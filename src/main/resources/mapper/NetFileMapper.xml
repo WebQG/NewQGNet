@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.www.dao.FileMapper">
+  <resultMap id="BaseResultMap" type="com.qg.www.models.File">
+    <id column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="father_id" jdbcType="INTEGER" property="fatherId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="modify_time" jdbcType="VARCHAR" property="modifyTime" />
+    <result column="download_times" jdbcType="INTEGER" property="downloadTimes" />
+    <result column="real_path" jdbcType="VARCHAR" property="realPath" />
+    <result column="filesize" jdbcType="INTEGER" property="filesize" />
+  </resultMap>
+
+
+
+</mapper>
