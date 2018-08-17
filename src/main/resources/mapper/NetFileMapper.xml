@@ -13,6 +13,51 @@
     <result column="filesize" jdbcType="INTEGER" property="filesize" />
   </resultMap>
 
+  <select id="searchFile" resultType="com.qg.www.models.NetFile">
+    SELECT * from file where file_name LIKE #{keyWord};
+  </select>
 
+  <insert id="addFile">
+    INSERT INTO file (file_name,father_id,user_id,user_name,modify_time,filesize,real_path)
+    VALUES (#{fileName}, #{fatherId},#{userId},#{userName},#{modifyTime},#{fileSize},#{realPath});
+  </insert>
 
+  <select id="listFile" resultType="com.qg.www.models.NetFile">
+    SELECT * FROM file WHERE father_id = #{fileId};
+  </select>
+
+  <delete id="deleteFile">
+    DELETE FROM file WHERE file_id = #{fileId};
+  </delete>
+
+  <select id="getUserId">
+    SELECT user_id FROM file WHERE file_id = #{fileId};
+  </select>
+
+  <select id="getDirectoryByFileId" resultType="int">
+    SELECT father_id FROM file WHERE file_id = #{fileId};
+  </select>
+
+  <update id="modifyFileName">
+    UPDATE file SET file_name = #{newFileName} ,modify_time = NOW() WHERE file_id = #{fileId};
+  </update>
+
+  <update id="updateDownloadTimes">
+    UPDATE file SET download_times = download_times + 1 WHERE real_path = #{realPath};
+  </update>
+
+  <select id="listSortedFile" resultType="com.qg.www.models.NetFile">
+    <choose>
+      <when test="type='num'">
+        SELECT * FROM file WHERE father_id= #{fatherId} ORDER BY modify_time DESC;
+      </when>
+      <otherwise>
+        SELECT * FROM file WHERE father_id= #{fatherId} ORDER BY convert(file_name USING gbk)COLLATE gbk_chinese_ci;
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="getFileById">
+    SELECT * FROM file WHERE file_id = #{fileId};
+  </select>
 </mapper>

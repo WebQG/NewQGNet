@@ -14,5 +14,5 @@
   <sql id="Base_Column_List">
     message_id, time, operator_id, user_id, content, root, action, status
   </sql>
-  
+
 </mapper>
